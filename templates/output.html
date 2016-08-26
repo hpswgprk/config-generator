@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Output config</title>
+    <link href="../static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../static/css/custom.css" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+    <div class="row">
+       <div class="col-md-7">
+           <a href="/" class="link"><h3>! Go to start page</h3></a>
+           <pre>
+{% if configType == 'br' %}
+!
+! <b>SYSTEM</b>
+hostname {{hostname}}
+timestamp bla-bla
+no service dhcp
+!
+! <b>INTERFACES</b>
+interface Loopback 0
+   description RID
+   ip address {{ loopbackip }} 255.255.255.255
+   exit
+interface GigabitEthernet0
+    ip address {{ mgmtip }} 255.255.255.0
+!
+! <b>BGP</b>
+router bgp {{ bgpasnum }}
+    bgp router-id {{ loopbackip }}
+    neighbor 1.1.1.1 remote-as 65001
+!
+{% elif configType == 'as' %}
+!
+! <b>SYSTEM</b>
+hostname {{hostname}}
+timestamp bla-bla
+no service dhcp
+!
+! <b>INTERFACES</b>
+interface range GigabitEthernet0/0-1
+   description UNLINK
+   switchport trunk encapsulation dot1q
+   switchport mode trunk
+   switchport trunk allowed vlan {{ trunkvlans }}
+   exit
+interface range FastEthernet0/1-24
+   description ACCESS
+   switchport mode access
+   switchport access vlan {{ accessvlan }}
+   exit
+!
+{% else %}
+Error
+{% endif %}
+            </pre>
+        </div>
+    </div>
+ </div>
+<script src="../static/js/html5shiv.min.js"></script>
+<script src="../static/js/respond.min.js"></script>
+<script src="../static/js/jquery.min.js"></script>
+<script src="../static/js/bootstrap.min.js"></script>
+</body>
+</html>
