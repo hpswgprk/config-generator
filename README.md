@@ -3,12 +3,13 @@ The simpliest example how Python, Flask, jinja2 and bootstrap could be used to g
 
 **How to start**
 
-TBD
+Manually: 
+* git clone https://github.com/Sk1f3r/config-generator.git && ./config-generator/app.py
 
-**TODO**
-- ~~~~add screenshots to wiki~~~~
-- fill the readme file
-- replace templates to block-driven model
+As a container:
+* sudo docker pull sk1f3r/config-generator
+* docker container run -d --name cfgen1 -p 8080:80 sk1f3r/config-generator
+* open http://<host-ip>:8080
 
 ***
 # Screenshots
