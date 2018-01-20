@@ -3,15 +3,12 @@ MAINTAINER "sk1f3r"
 
 RUN pip3 install flask
 
-ENV DST "/opt/cfg-gen"
+ENV DST "/opt/cfgen"
 
-ADD config.py $DST/
-ADD app.py $DST/
-ADD static $DST/
-ADD templates $DST/
+ADD * $DST/
 
 RUN chmod a+x $DST/app.py
 
 EXPOSE 80/tcp
 
-CMD "/opt/cfg-gen/app.py"
+CMD "/opt/cfgen/app.py"
