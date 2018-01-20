@@ -4,7 +4,7 @@ LABEL description="Light example of Flask usage for a config creation"
 
 RUN apk update && \
 apk install python3 python3-flask \
-python-software-properties build-essential &&
+python-software-properties build-essential && \
 rm -rf /var/cache/apk/*
 
 ENV dst-dir /opt/cfg-gen
