@@ -6,18 +6,18 @@ RUN apk update && \
 apk add python3 && pip3 install flask && \
 rm -rf /var/cache/apk/*
 
-ENV dst-dir /opt/cfg-gen
+ENV DST "/opt/cfg-gen"
 
-RUN mkdir -p $(dst-dir)/static
-RUN mkdir -p $(dst-dir)/templates
+RUN mkdir -p $DST/static
+RUN mkdir -p $DST/templates
 
-COPY config.py $(dst-dir)/config.py
-COPY app.py $(dst-dir)/app.py
-COPY static/* $(dst-dir)/static/
-COPY templates/* $(dst-dir)/template/
+COPY config.py $DST/config.py
+COPY app.py $DST/app.py
+COPY static/* $DST/static/
+COPY templates/* $DST/template/
 
-RUN chmod a+x $(dst-dir)/app.py
+RUN chmod a+x $DST/app.py
 
 EXPOSE 80/tcp
 
-CMD ["python3", $(dst-dir), "/app.py"]
+CMD ["python3", $DST, "/app.py"]
