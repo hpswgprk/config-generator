@@ -5,10 +5,10 @@ RUN pip3 install flask
 
 ENV DST "/opt/cfg-gen"
 
-COPY config.py $DST/config.py
-COPY app.py $DST/app.py
-COPY static/* $DST/static/
-COPY templates/* $DST/templates/
+ADD config.py $DST/
+ADD app.py $DST/
+ADD static $DST/
+ADD templates $DST/
 
 RUN chmod a+x $DST/app.py
 
