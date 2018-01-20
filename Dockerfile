@@ -20,4 +20,4 @@ RUN chmod a+x $DST/app.py
 
 EXPOSE 80/tcp
 
-CMD ["python3", $DST, "/app.py"]
+ENTRYPOINT ["python3 /opt/cfg-gen/app.py &"]
