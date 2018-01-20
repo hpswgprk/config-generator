@@ -9,7 +9,7 @@ Manually:
 As a container:
 * sudo docker pull sk1f3r/config-generator
 * docker container run -d --name cfgen1 -p 8080:80 sk1f3r/config-generator
-* open http://<host-ip>:8080
+* open http://<%host-ip%>:8080
 
 ***
 # Screenshots
