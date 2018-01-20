@@ -1,15 +1,12 @@
-FROM alpine:latest
+FROM python:3.6.4-alpine
 MAINTAINER "sk1f3r"
-LABEL description="Light example of Flask usage for a config creation"
 
-RUN apk update && \
-apk add python3 && pip3 install flask && \
-rm -rf /var/cache/apk/*
+RUN pip3 install flask
 
 ENV DST "/opt/cfg-gen"
 
-RUN mkdir -p $DST/static
-RUN mkdir -p $DST/templates
+RUN mkdir -p $DST/static && \
+mkdir -p $DST/templates
 
 COPY config.py $DST/config.py
 COPY app.py $DST/app.py
@@ -20,4 +17,4 @@ RUN chmod a+x $DST/app.py
 
 EXPOSE 80/tcp
 
-ENTRYPOINT ["python3 /opt/cfg-gen/app.py &"]
+CMD ["python3", $DST, "/app.py" ]
