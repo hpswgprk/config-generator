@@ -3,8 +3,7 @@ MAINTAINER "sk1f3r"
 LABEL description="Light example of Flask usage for a config creation"
 
 RUN apk update && \
-apk add --update python3 python3-flask \
-python-software-properties build-essential && \
+apk add python3 && pip3 install flask && \
 rm -rf /var/cache/apk/*
 
 ENV dst-dir /opt/cfg-gen
