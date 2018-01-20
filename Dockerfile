@@ -5,16 +5,13 @@ RUN pip3 install flask
 
 ENV DST "/opt/cfg-gen"
 
-RUN mkdir -p $DST/static && \
-mkdir -p $DST/templates
-
 COPY config.py $DST/config.py
 COPY app.py $DST/app.py
 COPY static/* $DST/static/
-COPY templates/* $DST/template/
+COPY templates/* $DST/templates/
 
 RUN chmod a+x $DST/app.py
 
 EXPOSE 80/tcp
 
-CMD "/opt/cfg-gen/app.py &"
+CMD "/opt/cfg-gen/app.py"
